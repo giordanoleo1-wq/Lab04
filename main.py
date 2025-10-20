@@ -20,12 +20,16 @@ def main():
         if scelta == "1":
             nuovo_nome = input("Inserisci il nuovo nome della crociera: ")
             # TODO: Aggiorna il nome della crociera
-
+            crociera.nome= nuovo_nome
+            print(f"Il nuovo nome della crociera è {nuovo_nome}")
         elif scelta == "2":
             file_path = "dati_crociera.csv"
             try:
                 crociera.carica_file_dati(file_path)
                 print("Dati caricati correttamente.")
+                print("Elenco cabine:")
+                crociera.stampa_cabine_passeggeri()
+
             except FileNotFoundError:
                 print("File non trovato.")
 
@@ -35,6 +39,8 @@ def main():
             try:
                 crociera.assegna_passeggero_a_cabina(codice_cabina, codice_passeggero)
                 print("Cabina assegnata con successo.")
+                print("Elenco cabine con pernottamenti aggiornati:")
+                crociera.stampa_cabine_passeggeri()
             except Exception as e:
                 print(f"Errore: {e}")
 
